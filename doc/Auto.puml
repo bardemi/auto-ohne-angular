@@ -1,0 +1,55 @@
+@startuml Anwendungskern
+
+!pragma useNewPackage
+skinparam classAttributeIconSize 0
+skinparam componentStyle uml2
+
+package mongoose {
+  class Schema
+
+  class "model()" as model
+  hide model circle
+}
+
+package auto.entity {
+  class "validateAuto()" as validateAuto
+  hide validateAuto circle
+
+  class AutoModel
+  hide AutoModel circle
+
+  AutoModel ..> Schema
+  AutoModel ..> model
+  AutoModel ..> validateAuto
+
+  AutoData ..> AutoArt
+
+  enum AutoArt {
+    PKW
+    LKW
+  }
+
+  interface AutoData <<entity>> {
+    + _id?: string
+    + __v?: number
+    + createdAt?: number
+    + updatedAt?: number
+    + marke: string
+    + modell?: string
+    + art?: AutoArt
+    + preis: number
+    + sitze?: number
+    + lieferbar?: boolean
+    + lieferdatum?: Date
+    + fahrgestellnummer: string
+    + homepage?: string
+    + schlagwoerter?: Array<string>
+    + vorbesitzer: any
+  }
+}
+
+hide empty members
+
+footer (c) Aksel Kücük
+
+@enduml

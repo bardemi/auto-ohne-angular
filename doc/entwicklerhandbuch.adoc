@@ -1,0 +1,88 @@
+= Entwicklerhandbuch
+Baris Demirocak, Burak Erdogan, Aksel Kücük
+:doctype: book
+:toc: left
+:sectanchors:
+:sectlinks:
+:sectnums:
+:source-highlighter: coderay
+:icons: font
+:plantuml-server-url: http://www.plantuml.com/plantuml
+// Lokaler PlantUML-Server "docker run -d -p 8080:8080 plantuml/plantuml-server:jetty"
+// :plantuml-server-url: http://localhost:8080
+
+// https://github.com/asciidoctor/asciidoctorj
+// https://github.com/asciidoctor/asciidoctor-diagram
+// http://de.plantuml.com/classes.html
+// http://de.plantuml.com/component.html
+// https://github.com/odrotbohm/asciidoctor-plantuml
+
+IMPORTANT: Copyright (C) 2020 - present Baris Demirocak, Burak Erdogan, Aksel Kücük +
+           Free use of this software is granted under the terms of the
+           GNU General Public License (GPL) v3. +
+           For the full text of the license, see the http://www.gnu.org/licenses/gpl-3.0.html[license] file.
+
+== Der Applikationsserver
+
+=== Der Applikationsserver im Überblick
+
+Hierbei handelt es sich um eine Beispiel Web-Anwendung für das Speichern und Verwalten von Autos. Die Applikation ist in JavaScript zusammen mit dem freien MEAN-Stack (ohne Angular) umgesetzt.
+Dieses Entwicklerhandbuch soll nur als grobe Übersicht dienen und beinhaltet nicht jede Funktionalität der Anwendung!
+
+Es werden die  Use-Cases von zwei Rollen in der Anwendung dargestellt. 
+Ein Akteur mit der Rolle "Admin" kann Autos suchen, Dateien herunterladen, Autos anlegen/ändern/löschen und Dateien hochladen.
+Der Akteur mit der Rolle "Gast" hingegen hat deutlich weniger möglichkeiten mit der Anwendung zu interagieren und kann nur nach Autos suchen und Dateien herunterladen.
+
+.Use Cases
+[plantuml,use-cases,svg]
+----
+include::use-cases.puml[]
+----
+
+Zugriff eines REST-Clients auf die Applikation:
+
+.Komponentendiagramm
+[plantuml,komponenten,svg]
+----
+include::komponenten.puml[]
+----
+
+=== Die REST-Schnittstelle
+
+Die REST-Schnittstelle wurde mit Express realisiert und gehört somit der Präsentationsschicht an. In dem angehängten Klassendiagramm wird der Aufbau der Schnittstelle nach außen veranschaulicht.
+
+.Handler für die REST-Schnittstelle
+[plantuml,AutoHandler,svg]
+----
+include::AutoHandler.puml[]
+----
+
+=== Der Anwendungskern
+
+Der Anwendungskern ist in der Klasse "AutoService" realisiert und arbeitet asynchron. Im Klassendiagramm wird deutlich welche funktionen in der Service-Klasse realisiert wurden und auf was die Service-Klasse zugreift.
+
+.Anwendungskern mit Mongoose
+[plantuml,AutoService,svg]
+----
+include::AutoService.puml[]
+----
+
+=== Interface für Entities und das Mongoose-Model
+
+Die Properties für das Entity "Auto" werden im Interface "AutoData" deklariert. 
+
+.Entity, Model und Schema
+[plantuml,Auto,svg]
+----
+include::Auto.puml[]
+----
+
+== Programmierrichtlinien für TypeScript und JavaScript
+
+Für die Programmierung mit *TypeScript* und *JavaScript* wird folgende
+Styleguides empfehlenswert:
+
+[horizontal]
+_Microsoft_:: https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
+_Angular_:: https://angular.io/docs/ts/latest/guide/style-guide.html
+_React_:: https://github.com/airbnb/javascript/tree/master/react

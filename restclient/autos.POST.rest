@@ -1,0 +1,39 @@
+###
+### N e t z w e r k   -  V e r b i n d u n g   n o t w e n d i g
+###
+
+@host = localhost:8443
+
+### Login
+# @name login
+POST https://{{host}}/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=p
+
+### Login mit falschem Passwort
+# @name login
+POST https://{{host}}/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=FALSCH
+
+### Neues auto anlegen
+POST https://{{host}}/autos
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+< .\json\auto-neu.json
+
+### Neues auto mit ungueltigen Daten anlegen
+POST https://{{host}}/autos
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+< .\json\auto-neu-invalid.json
+
+### Neues auto ohne Login anlegen
+POST https://{{host}}/autos
+Content-Type: application/json
+
+< .\json\auto-neu.json

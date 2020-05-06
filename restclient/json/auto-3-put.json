@@ -1,0 +1,12 @@
+{
+  "marke": "Mercedes-Benz",
+  "modell": "S-Klasse",
+  "art": "PKW",
+  "preis": 110000,
+  "sitze": 5,
+  "lieferbar": true,
+  "lieferdatum": "2017-02-01T00:00:00.000Z",
+  "fahrgestellnummer": "0-0070-9732-8",
+  "homepage": "https://test.de/",
+  "schlagwoerter": ["Mercedes", "Benz"]
+}

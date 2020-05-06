@@ -1,0 +1,114 @@
+###
+### N e t z w e r k   -  V e r b i n d u n g   n o t w e n d i g
+###
+
+@host = localhost:8443
+
+### Suche marke und modell von allen Autos
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+  autos {
+    marke
+    modell
+  }
+}
+
+### Suche marke, modell und fahrgestellnummer von einem auto mit vorhandener auto-ID
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+  auto(id: "00000000-0000-0000-0000-000000000001") {
+    marke
+    modell
+    fahrgestellnummer
+  }
+}
+
+### Suche marke und modell von Autos mit vorhandenem marke
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+  autos(marke: "BMW") {
+    marke
+    modell
+  }
+}
+
+
+### Suche marke, modell und schlagwoerter von Autos mit vorhandenem marke
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+{
+  autos(marke: "BMW") {
+    marke
+    modell
+    schlagwoerter
+  }
+}
+
+### Neues auto anlegen
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  createauto(
+    marke: "BMW"
+    modell: "320"
+    art: "PKW"
+    sitze: "5"
+    preis: 30000
+    lieferbar: true
+    lieferdatum: null
+    fahrgestellnummer: "WBAVB71070VA36703"
+    homepage: "http://bmw.de"
+    schlagwoerter: ["LIMOUSINE"]
+  ) {
+    _id
+  }
+}
+
+### Vorhandenes auto aktualisieren
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  updateauto(
+    _id: "00000000-0000-0000-0000-000000000003",
+    marke: "BMW"
+    modell: "320"
+    art: "PKW"
+    sitze: "5"
+    preis: 30000
+    lieferbar: true
+    lieferdatum: null
+    fahrgestellnummer: "WBAVB71070VA36704"
+    homepage: "http://bmw.de"
+    schlagwoerter: [
+      "LIMOUSINE",
+      "SPORTWAGEN"
+    ],
+    version: 0
+  ) {
+    version
+  }
+}
+
+### Vorhandenes auto loeschen
+POST https://localhost:8443/api
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  deleteauto(id: "00000000-0000-0000-0000-000000000004")
+}

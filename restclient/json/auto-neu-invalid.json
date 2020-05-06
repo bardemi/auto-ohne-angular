@@ -1,0 +1,11 @@
+{
+  "marke": "?!",
+  "modell": "Gibts-Nicht-Klasse",
+  "art": "XX",
+  "preis": 0,
+  "sitze": 0,
+  "lieferbar": true,
+  "lieferdatum": "2017-02-01T00:00:00.000Z",
+  "fahrgestellnummer": "falsche-fahrgestellnummer",
+  "homepage": "anyHomepage"
+}

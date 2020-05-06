@@ -1,0 +1,13 @@
+{
+  "_id": "00000000-0000-0000-0000-000000000003",
+  "marke": "?!",
+  "modell": "S-Klasse",
+  "art": "PKW",
+  "preis": 99999,
+  "sitze": 5,
+  "lieferbar": true,
+  "lieferdatum": "2017-02-01T00:00:00.000Z",
+  "fahrgestellnummer": "falsche-fahrgestellnummer",
+  "homepage": "anyHomepage",
+  "schlagwoerter": ["Daimler"]
+}

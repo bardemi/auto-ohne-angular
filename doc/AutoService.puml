@@ -1,0 +1,46 @@
+@startuml Anwendungskern
+
+!pragma useNewPackage
+skinparam classAttributeIconSize 0
+skinparam componentStyle uml2
+
+interface Promise<T>
+
+package shared {
+  class "sendMail()" as sendMail
+  hide sendMail circle
+}
+
+package auto {
+  package entity {
+    class AutoModel
+    hide AutoModel circle
+
+    class "validateAuto()" as validateAuto
+    hide validateAuto circle
+
+    interface AutoData <<entity>>
+  }
+
+  package service #DDDDDD {
+    AutoService ..> Promise
+    AutoService ..> AutoModel
+    AutoService ..> AutoData
+    AutoService ..> validateAuto
+    AutoService ..> sendMail
+
+    class AutoService << control >> {
+      + async findById(id: string): Promise<AutoData | undefined>
+      + async find(query?: any): Promise<Array<AutoData>>
+      + async create(auto: AutoData): Promise<AutoData>
+      + async update(auto: AutoData, version: string): Promise<AutoData>
+      + async delete(id: string): Promise<boolean>
+    }
+  }
+}
+
+hide empty members
+
+footer (c) Aksel Kücük
+
+@enduml
